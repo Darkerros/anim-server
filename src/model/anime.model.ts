@@ -16,28 +16,28 @@ export class AnimeModel extends Model<AnimeModel> {
   @Column({ type: DataType.STRING })
   shikimoryId: string;
 
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   shikimoriRating: number;
 
-  @Column({ type: DataType.NUMBER })
-  shikimori_votes: number;
+  @Column({ type: DataType.INTEGER })
+  shikimoriVotes: number;
 
   @Column({ type: DataType.STRING })
   kinopoiskId: string;
 
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   kinopoiskRating: number;
 
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   kinopoiskVotes: number;
 
   @Column({ type: DataType.STRING })
   imdbId: string;
 
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   imdbRating: number;
 
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   imdbVotes: number;
 
   @Column({ type: DataType.STRING })
@@ -52,13 +52,13 @@ export class AnimeModel extends Model<AnimeModel> {
   @Column({ type: DataType.ARRAY(DataType.STRING) })
   otherTitleEnList: string[];
 
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   year: number;
 
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   episodesCount: number;
 
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   lastEpisode: number;
 
   @Column({ type: DataType.STRING })
@@ -76,13 +76,13 @@ export class AnimeModel extends Model<AnimeModel> {
   @Column({ type: DataType.ARRAY(DataType.STRING) })
   screenshots: string[];
 
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   duration: number;
 
   // genres: string[];
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   episodesTotal: number;
 
-  @Column({ type: DataType.NUMBER })
+  @Column({ type: DataType.INTEGER })
   episodesAired: number;
 }
