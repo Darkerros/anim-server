@@ -21,12 +21,14 @@ const createRequest = (
   }
 };
 
-type TGetList = () => Promise<ResponseKodik<ListResource>>;
+type TGetList = (nextPage?: string) => Promise<ResponseKodik<ListResource>>;
 
-export const getList: TGetList = async () => {
+export const getList: TGetList = async (nextPage) => {
   const resp = await createRequest('/list', 'get', null, {
     with_material_data: true,
     limit: 100,
+    types: 'anime,anime-serial',
+    page: nextPage,
   });
   if (resp.next_page) resp.next_page = resp.next_page.split('&page=')[1];
   return resp;
