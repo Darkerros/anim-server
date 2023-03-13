@@ -5,6 +5,8 @@ export interface ListResource {
   title: string;
   title_orig: string;
   other_title: string;
+  last_episode: number;
+  episodes_count: number;
   year: number;
   kinopoisk_id: string;
   imdb_id: string;
@@ -59,5 +61,6 @@ interface MaterialData {
   composers: string[];
   editors: string[];
   designers: string[];
-  operators: [];
+  operators: string[];
+  screenshots: string[];
 }
