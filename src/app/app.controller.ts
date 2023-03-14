@@ -1,9 +1,11 @@
 import { Controller, Get } from '@nestjs/common';
-import { getList } from '../external-api/kodik/kodik';
+import { KodikService } from '../kodik/kodik.service';
+
 @Controller()
 export class AppController {
+  constructor(private kodikService: KodikService) {}
   @Get()
   async getHello() {
-    return await getList();
+    return await this.kodikService.updateTable();
   }
 }
