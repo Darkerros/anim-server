@@ -8,8 +8,13 @@ import { UserSessionsModel } from '../model/user-sessions.model';
 import { KodikAnimeModel } from '../model/kodik-anime.model';
 import { AnimeModel } from '../model/anime.model';
 import { KodikModule } from '../kodik/kodik.module';
+import { UserModule } from '../user/user.module';
+import { AuthModule } from '../auth/auth.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
+  controllers: [AppController],
+  providers: [],
   imports: [
     ConfigModule.forRoot({
       envFilePath: '.env',
@@ -27,9 +32,10 @@ import { KodikModule } from '../kodik/kodik.module';
       sync: { force: false },
       logging: false,
     }),
+    ScheduleModule.forRoot(),
+    UserModule,
+    AuthModule,
     KodikModule,
   ],
-  controllers: [AppController],
-  providers: [],
 })
 export class AppModule {}
