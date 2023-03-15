@@ -8,8 +8,17 @@ import {
 import { UserSessionStatus } from '../types/user-session-status';
 import { UserModel } from './user.model';
 
+interface UserSessionsCreationsAttributes {
+  userId: number;
+  accessToken: string;
+  refreshToken: string;
+}
+
 @Table({ tableName: 'UsersSessions' })
-export class UserSessionsModel extends Model<UserSessionsModel> {
+export class UserSessionsModel extends Model<
+  UserSessionsModel,
+  UserSessionsCreationsAttributes
+> {
   @Column({
     type: DataType.INTEGER,
     primaryKey: true,
