@@ -11,6 +11,7 @@ import { KodikModule } from '../kodik/kodik.module';
 import { UserModule } from '../user/user.module';
 import { AuthModule } from '../auth/auth.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { AnimeModule } from '../anime/anime.module';
 
 @Module({
   controllers: [AppController],
@@ -36,6 +37,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     UserModule,
     AuthModule,
     KodikModule,
+    AnimeModule,
   ],
 })
 export class AppModule {}
