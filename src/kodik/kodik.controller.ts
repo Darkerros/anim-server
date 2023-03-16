@@ -9,7 +9,10 @@ export class KodikController {
   async getById(
     @Query() query: { limit: number | undefined; offset: number | undefined },
   ) {
-    return await this.kodikService.getAllKodikData(query.limit, query.offset);
+    return await this.kodikService.getAllKodikAnimeToAdd(
+      query.limit,
+      query.offset,
+    );
   }
 
   @Get(':id')

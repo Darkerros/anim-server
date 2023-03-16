@@ -7,6 +7,8 @@ import { InjectModel } from '@nestjs/sequelize';
 import { getList } from '../external-api/kodik/kodik';
 import { ListResource } from '../external-api/kodik/types/list-resource';
 import { AnimeModel } from '../model/anime.model';
+import { Op } from 'sequelize';
+import { Sequelize } from 'sequelize-typescript';
 
 @Injectable()
 export class KodikService {
@@ -16,7 +18,7 @@ export class KodikService {
     @InjectModel(KodikAnimeModel)
     private kodikAnimeRepository: typeof KodikAnimeModel,
     @InjectModel(AnimeModel)
-    private animeModel: typeof AnimeModel,
+    private animeRepository: typeof AnimeModel,
   ) {}
 
   async getAllAnimesFromApi() {
@@ -31,7 +33,16 @@ export class KodikService {
   }
 
   async getAllKodikAnimeToAdd(limit = 100, offset = 0) {
-    return this.kodikAnimeRepository.findAll({ limit: limit, offset: offset });
+    const data = await this.kodikAnimeRepository.findAll({
+      include: [{ model: AnimeModel, required: false }],
+      limit: limit,
+      subQuery: false,
+      where: {
+        $loadedAnimeData$: null,
+      },
+      order: [['id', 'ASC']],
+    });
+    return data;
   }
 
   async getKodikAnimeDataById(id: number) {
