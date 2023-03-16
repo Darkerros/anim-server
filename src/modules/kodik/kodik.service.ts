@@ -2,11 +2,11 @@ import { Injectable, Logger } from '@nestjs/common';
 import {
   IKodikAnimesCreationAttr,
   KodikAnimeModel,
-} from '../model/kodik-anime.model';
+} from '../../model/kodik-anime.model';
 import { InjectModel } from '@nestjs/sequelize';
-import { getList } from '../external-api/kodik/kodik';
-import { ListResource } from '../external-api/kodik/types/list-resource';
-import { AnimeModel } from '../model/anime.model';
+import { getList } from '../../external-api/kodik/kodik';
+import { ListResource } from '../../external-api/kodik/types/list-resource';
+import { AnimeModel } from '../../model/anime.model';
 import { Op } from 'sequelize';
 import { Sequelize } from 'sequelize-typescript';
 

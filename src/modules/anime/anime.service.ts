@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { AnimeModel } from '../model/anime.model';
+import { AnimeModel } from '../../model/anime.model';
 import { InjectModel } from '@nestjs/sequelize';
 import { KodikService } from '../kodik/kodik.service';
 import { CreateAnimeDto } from './dto/create-anime-dto';
