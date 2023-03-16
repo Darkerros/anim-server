@@ -1,4 +1,11 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import {
+  Column,
+  DataType,
+  ForeignKey,
+  Model,
+  Table,
+} from 'sequelize-typescript';
+import { KodikAnimeModel } from './kodik-anime.model';
 
 @Table({ tableName: 'Animes' })
 export class AnimeModel extends Model<AnimeModel> {
@@ -67,7 +74,7 @@ export class AnimeModel extends Model<AnimeModel> {
   @Column({ type: DataType.STRING })
   status: string; //"released"
 
-  @Column({ type: DataType.STRING })
+  @Column({ type: DataType.JSON })
   description: string;
 
   @Column({ type: DataType.STRING })
@@ -85,4 +92,7 @@ export class AnimeModel extends Model<AnimeModel> {
 
   @Column({ type: DataType.INTEGER })
   episodesAired: number;
+
+  @ForeignKey(() => KodikAnimeModel)
+  kodikDataId: number;
 }

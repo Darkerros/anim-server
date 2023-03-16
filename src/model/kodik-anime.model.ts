@@ -1,4 +1,5 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import { Column, DataType, HasOne, Model, Table } from 'sequelize-typescript';
+import { AnimeModel } from './anime.model';
 
 export interface IKodikAnimesCreationAttr {
   kodikId: string;
@@ -141,4 +142,7 @@ export class KodikAnimeModel extends Model<
 
   @Column({ type: DataType.INTEGER })
   episodesAired: number;
+
+  @HasOne(() => AnimeModel)
+  loadedAnimeData: AnimeModel;
 }
