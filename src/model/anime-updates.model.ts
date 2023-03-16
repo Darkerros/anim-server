@@ -4,9 +4,11 @@ import {
   DataType,
   ForeignKey,
   Model,
+  Table,
 } from 'sequelize-typescript';
 import { AnimeModel } from './anime.model';
 
+@Table({ tableName: 'AnimeUpdates' })
 export class AnimeUpdatesModel extends Model<AnimeUpdatesModel> {
   @Column({
     type: DataType.INTEGER,
