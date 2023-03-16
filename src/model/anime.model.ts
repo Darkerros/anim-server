@@ -1,4 +1,5 @@
 import {
+  BelongsToMany,
   Column,
   DataType,
   ForeignKey,
@@ -6,6 +7,8 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { KodikAnimeModel } from './kodik-anime.model';
+import { AnimeGenresModel } from './anime-genres.model';
+import { GenresModel } from './genres.model';
 
 @Table({ tableName: 'Animes' })
 export class AnimeModel extends Model<AnimeModel> {
@@ -86,7 +89,9 @@ export class AnimeModel extends Model<AnimeModel> {
   @Column({ type: DataType.INTEGER })
   duration: number;
 
-  // genres: string[];
+  @BelongsToMany(() => GenresModel, () => AnimeGenresModel)
+  genres: string[];
+
   @Column({ type: DataType.INTEGER })
   episodesTotal: number;
 
