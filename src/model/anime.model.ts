@@ -3,12 +3,14 @@ import {
   Column,
   DataType,
   ForeignKey,
+  HasMany,
   Model,
   Table,
 } from 'sequelize-typescript';
 import { KodikAnimeModel } from './kodik-anime.model';
 import { AnimeGenresModel } from './anime-genres.model';
 import { GenresModel } from './genres.model';
+import { AnimeUpdatesModel } from './anime-updates.model';
 
 @Table({ tableName: 'Animes' })
 export class AnimeModel extends Model<AnimeModel> {
@@ -100,4 +102,7 @@ export class AnimeModel extends Model<AnimeModel> {
 
   @ForeignKey(() => KodikAnimeModel)
   kodikDataId: number;
+
+  @HasMany(() => AnimeUpdatesModel)
+  updates: AnimeUpdatesModel[];
 }
