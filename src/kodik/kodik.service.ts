@@ -6,7 +6,7 @@ import {
 import { InjectModel } from '@nestjs/sequelize';
 import { getList } from '../external-api/kodik/kodik';
 import { ListResource } from '../external-api/kodik/types/list-resource';
-import { Cron } from '@nestjs/schedule';
+import { AnimeModel } from '../model/anime.model';
 
 @Injectable()
 export class KodikService {
@@ -15,6 +15,8 @@ export class KodikService {
   constructor(
     @InjectModel(KodikAnimeModel)
     private kodikAnimeRepository: typeof KodikAnimeModel,
+    @InjectModel(AnimeModel)
+    private animeModel: typeof AnimeModel,
   ) {}
 
   async getAllAnimesFromApi() {
@@ -28,17 +30,24 @@ export class KodikService {
     return allData;
   }
 
-  async getAllAnimes() {
-    return this.kodikAnimeRepository.findAll();
+  async getAllKodikAnimeToAdd(limit = 100, offset = 0) {
+    return this.kodikAnimeRepository.findAll({ limit: limit, offset: offset });
   }
 
-  @Cron('0 */30 * * * *')
+  async getKodikAnimeDataById(id: number) {
+    return await this.kodikAnimeRepository.findOne({ where: { id: id } });
+  }
+
+  // @Cron('0 */30 * * * *')
   async updateTable() {
     this.logger.debug('Start update table');
     const data = await this.getAllAnimesFromApi();
     this.logger.debug('Load data from kodik api');
     const formatData = formateListResourceToAnime(data);
-    await this.kodikAnimeRepository.destroy({});
+    // const dataOnKodikDb = await this.get();
+    // for (const data of dataOnKodikDb) {
+    //   await data.destroy();
+    // }
     await this.kodikAnimeRepository.bulkCreate(formatData);
     this.logger.debug('Complete update kodik data');
     return await this.kodikAnimeRepository.findAll();
