@@ -14,6 +14,8 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { AnimeModule } from '../anime/anime.module';
 import { AnimeGenresModel } from '../../model/anime-genres.model';
 import { GenresModel } from '../../model/genres.model';
+import { AnimeUpdatesModel } from '../../model/anime-updates.model';
+import { GenresModule } from '../genres/genres.module';
 
 @Module({
   controllers: [AppController],
@@ -34,6 +36,7 @@ import { GenresModel } from '../../model/genres.model';
         UserSessionsModel,
         AnimeModel,
         AnimeGenresModel,
+        AnimeUpdatesModel,
         GenresModel,
         KodikAnimeModel,
       ],
@@ -47,6 +50,7 @@ import { GenresModel } from '../../model/genres.model';
     AuthModule,
     KodikModule,
     AnimeModule,
+    GenresModule,
   ],
 })
 export class AppModule {}
