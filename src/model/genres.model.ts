@@ -12,7 +12,7 @@ export interface GenresCreationAttributes {
   name: string;
 }
 
-@Table({ tableName: 'Genres' })
+@Table({ tableName: 'Genres', createdAt: false, updatedAt: false })
 export class GenresModel extends Model<GenresModel, GenresCreationAttributes> {
   @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
   id: number;
