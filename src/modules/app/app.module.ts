@@ -12,6 +12,8 @@ import { UserModule } from '../user/user.module';
 import { AuthModule } from '../auth/auth.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { AnimeModule } from '../anime/anime.module';
+import { AnimeGenresModel } from '../../model/anime-genres.model';
+import { GenresModel } from '../../model/genres.model';
 
 @Module({
   controllers: [AppController],
@@ -27,7 +29,14 @@ import { AnimeModule } from '../anime/anime.module';
       username: process.env.POSTGRES_USERNAME,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_TABLE,
-      models: [UserModel, UserSessionsModel, AnimeModel, KodikAnimeModel],
+      models: [
+        UserModel,
+        UserSessionsModel,
+        AnimeModel,
+        AnimeGenresModel,
+        GenresModel,
+        KodikAnimeModel,
+      ],
       autoLoadModels: true,
       synchronize: true,
       sync: { force: false },
